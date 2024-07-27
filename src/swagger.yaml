@@ -1,0 +1,3783 @@
+openapi: 3.0.3
+info:
+  title: YOUTUBE API
+  description: >-
+    # KRISH DESAI
+
+    The YouTube API allows developers to access YouTube data, including video details,
+    channel information, and more. This documentation outlines the endpoints and
+    functionalities provided by the API
+
+
+    The **YoutubeAPI** project is an innovative 🚀 and community-driven 🔭 initiative aimed at providing developers with free and accessible APIs for their projects.
+
+    The project focuses on delivering a wide range of APIs that cater to various domains and functionalities, enabling developers to seamlessly integrate these APIs into their applications.
+
+    Key highlights of the YoutubeAPI project include:
+
+    1. **🧤 Accessibility:** The YoutubeAPI project is committed to eliminating barriers by providing free access to its collection of APIs.  
+        Developers can leverage these APIs without any cost limitations, allowing them to experiment, learn, and build innovative applications.
+
+    2. **🔩 Diverse API Collection:** The project offers a diverse and comprehensive collection of APIs that span across different industries, domains, and functionalities.  
+        Whether you require social media integrations, payment gateways, machine learning algorithms, or IoT device connectivity, the YoutubeAPI project has you covered.
+    
+    3. **🔌 Simplified Integration:** The YoutubeAPI project understands the challenges developers face when integrating APIs into their applications. To address this, the project provides clear documentation, code samples, and SDKs, simplifying the integration process and reducing development time and effort.
+    
+    4. **🤝 Community-Driven Development:** The project fosters a vibrant and collaborative community of developers. Contributors are encouraged to share their knowledge, engage in discussions, and collaborate on API-related projects. This collective effort ensures the continuous improvement and reliability of the APIs offered by the YoutubeAPI project.
+    
+    5. **🎼 Learning and Skill Development:** The YoutubeAPI project aims to empower developers by providing a platform for learning and skill development. Through access to various APIs and educational resources, developers can enhance their understanding of API integration, expand their knowledge, and showcase their expertise through building complete projects.
+        
+
+    Overall, the **YoutubeAPI** project is a valuable resource for developers seeking accessible and diverse APIs.
+
+    By fostering a supportive community, the project empowers developers to learn, create, and innovate, ultimately contributing to the growth and advancement of the API integration landscape.
+
+    ## 🏁 Installation
+
+    Follow [these](https://github.com/hiteshchoudhary/apihub#-installation) instructions for the installation and project setup.
+
+    ## 🖐 Source Code
+
+    Explore the source code and contribute on [GitHub](https://github.com/your-username/your-youtube-api-project).
+
+    ## 🐞 Reporting issues
+
+    If you find API issues or bugs when testing, please create an [issue](https://github.com/hiteshchoudhary/apihub/issues/new) and assign it to a member of the development team.
+
+  version: 1.0.0
+  contact: {}
+servers:
+  - url: "https://mytube-app-pvs4x.ondigitalocean.app/api/v1"
+
+paths:
+  /user/current-user:
+    get:
+      tags:
+        - 🔐 Authentication
+      summary: Get logged in user
+      description: >-
+        The API endpoint allows you to retrieve the details of the currently
+        logged-in user based on their authentication token.
+
+
+        When accessing this endpoint with a valid authentication token, you will
+        receive a response containing the information of the user who is
+        currently authenticated and logged in.
+      operationId: getLoggedInUser
+      responses:
+        "200":
+          description: Get logged in user
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      _id:
+                        type: string
+                        example: 649e795264e7dba29b726936  
+                      userName:
+                        type: string
+                        example: mariano.schiller80  
+                      fullName:
+                        type: string
+                        example: teri parker  
+                      avatar:
+                        type: string
+                        example: https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/385.jpg
+                      email:
+                        type: string
+                        example: user.email@domain.com
+                      watchHistory:
+                        type: array
+                        example: [
+                            65atbde315e39699acd57b8b
+                            61arbde345e59699acd57567
+                            62ab6de316e59699acd54568,
+                          ]  
+                      createdAt:
+                        type: string
+                        example: "2023-06-30T06:42:26.163Z"  
+                      updatedAt:
+                        type: string
+                        example: "2023-06-30T06:44:29.831Z"
+                  message:
+                    type: string
+                    example: Current user fetched successfully
+                  statusCode:
+                    type: number
+                    example: 200
+                  success:
+                    type: boolean
+                    example: true
+              examples:
+                Get logged in user:
+                  value:
+                    data:
+                      _id: 649e795264e7dba29b726936
+                      userName: mariano.schiller80
+                      fullName: teri parker
+                      avatar: "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/385.jpg"
+                      email: user.email@domain.com
+                      watchHistory: [
+                          65atbde315e39699acd57b8b,
+                          61arbde345e59699acd57567,
+                          62ab6de316e59699acd54568,
+                      ]
+                      createdAt: "2023-06-30T06:42:26.163Z"
+                      updatedAt: "2023-06-30T06:44:29.831Z"
+                      __v: 0
+                    message: Current user fetched successfully
+                    statusCode: 200
+                    success: true
+
+  /user/register:
+    post:
+      tags:
+        - 🔐 Authentication
+      summary: Register user
+      description: >-
+        The API endpoint allows users to register a new account by providing
+        their details such as `fullName`, `userName`, `email`, and `password`. Upon
+        successful registration, a verification email is sent to the user's email
+        address.
+      operationId: registerUser
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                fullName:
+                  type: string
+                  example: krish uso
+                userName:
+                  type: string
+                  example: jk118
+                email:
+                  type: string
+                  example: user.email@domain.com
+                password:
+                  type: string
+                  example: 123456789
+                avatar:
+                  description: File
+                  type: string
+                  format: binary
+                coverImage:
+                  description: File
+                  type: string
+                  format: binary
+            example:
+              fullName: krish uso
+              userName: jk118
+              email: user.email@domain.com
+              password: 123456789
+      responses:
+        "201":
+          description: Register user
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      user:
+                        type: object
+                        properties:
+                          __v:
+                            type: number
+                            example: 0
+                          _id:
+                            type: string
+                            example: 649e795264e7dba29b726936
+                          avatar:
+                            type: string
+                            example: https://via.placeholder.com/200x200.png
+                          coverImage:
+                            type: string
+                            example: https://via.placeholder.com/200x200.png
+                          createdAt:
+                            type: string
+                            example: "2023-06-30T06:42:26.163Z"
+                          email:
+                            type: string
+                            example: user.email@domain.com
+                          fullName:
+                            type: string
+                            example: krish desai
+                          updatedAt:
+                            type: string
+                            example: "2023-06-30T06:42:26.247Z"
+                          userName:
+                            type: string
+                            example: kd117
+                          watchHistory:
+                            type: array
+                            example: []
+                  message:
+                    type: string
+                    example: >-
+                      Users registered successfully and verification email has
+                      been sent on your email.
+                  statusCode:
+                    type: number
+                    example: 200
+                  success:
+                    type: boolean
+                    example: true
+              examples:
+                Register user:
+                  value:
+                    data:
+                      user:
+                        __v: 0
+                        _id: 649e795264e7dba29b726936
+                        userName: kd117
+                        fullName: krish desai
+                        email: user.email@domain.com
+                        avatar: https://via.placeholder.com/200x200.png
+                        coverImage: https://via.placeholder.com/200x200.png
+                        watchHistory: []
+                        createdAt: "2023-06-30T06:42:26.163Z"
+                        updatedAt: "2023-06-30T06:42:26.247Z"
+                    message: >-
+                      User register successfully
+                    statusCode: 200
+                    success: true
+
+  /user/login:
+    post:
+      tags:
+        - 🔐 Authentication
+      summary: Login user
+      description: >-
+        The API endpoint allows users to Login User.You are Not Login first Register.
+      operationId: loginUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: test1@gmail.com
+                userName:
+                  type: string
+                  example: kd117
+                password:
+                  type: string
+                  example: test@123
+            example:
+              userName: krish
+              email: test1@gmail.com
+              password: test@123
+      responses:
+        "201":
+          description: Login user
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      user:
+                        type: object
+                        properties:
+                          __v:
+                            type: number
+                            example: 0
+                          _id:
+                            type: string
+                            example: 649e795264e7dba29b726936
+                          avatar:
+                            type: string
+                            example: https://via.placeholder.com/200x200.png
+                          coverImage:
+                            type: string
+                            example: https://via.placeholder.com/200x200.png
+                          watchHistory:
+                            type: array
+                            example: [
+                                65atbde315e39699acd57b8b,
+                                61arbde345e59699acd57567,
+                                62ab6de316e59699acd54568,
+                              ]
+                          createdAt:
+                            type: string
+                            example: "2023-06-30T06:42:26.163Z"
+                          email:
+                            type: string
+                            example: user.email@domain.com
+                          fullName:
+                            type: string
+                            example: krish desai
+                          updatedAt:
+                            type: string
+                            example: "2023-06-30T06:42:26.247Z"
+                          username:
+                            type: string
+                            example: doejohn
+                  message:
+                    type: string
+                    example: >-
+                      User logged in successfully
+                  statusCode:
+                    type: number
+                    example: 200
+                  success:
+                    type: boolean
+                    example: true
+              examples:
+                login user:
+                  value:
+                    data:
+                      user:
+                        __v: 0
+                        _id: 649e795264e7dba29b726936
+                        userName: kd117
+                        fullName: krish desai
+                        email: user.email@domain.com
+                        avatar: https://via.placeholder.com/200x200.png
+                        coverImage: https://via.placeholder.com/200x200.png
+                        watchHistory: [
+                            65atbde315e39699acd57b8b,
+                            61arbde345e59699acd57567,
+                            62ab6de316e59699acd54568,
+                          ]
+                        createdAt: "2023-06-30T06:42:26.163Z"
+                        updatedAt: "2023-06-30T06:42:26.247Z"
+                      accessToken: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDllNzk1MjY0ZTdkYmEyOWI3MjY5MzYiLCJlbWFpbCI6IndhamUuc2h1YmhhbTExMUBnbWFpbC5jb20iLCJ1c2VybmFtZSI6IndhamVzaHViaGFtIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNjg4MTA3NDY5LCJleHAiOjE2ODgxOTM4Njl9.40qfVrWi8x8fGBRB9JBVCVsdMYvlwzjIRpffz5z7DK4"
+                      refreshToken: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDllNzk1MjY0ZTdkYmEyOWI3MjY5MzYiLCJpYXQiOjE2ODgxMDc0NjksImV4cCI6MTY4ODk3MTQ2OX0.7or55Coj0K_UY4YpzYzkNR9hcOIhusxk9FRz7eMV8Ho"   
+                    message: >-
+                      User logged in successfully
+                    statusCode: 200
+                    success: true
+
+  /user/logout:
+    post:
+      tags:
+        - 🔐 Authentication
+      summary: Logout user
+      description: >-
+        The API endpoint is responsible for logging out users from the
+        application and destroying the access token cookies stored on the
+        client-side.
+
+
+        When accessing this endpoint, it triggers the logout process, revoking
+        the user's authentication and terminating their active session.
+
+
+        Additionally, it ensures that any access token cookies associated with
+        the user's session are removed from the client's browser, effectively
+        logging them out from the application.
+      operationId: logoutUser
+      responses:
+        "200":
+          description: Logout user
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties: {}
+                  message:
+                    type: string
+                    example: User logged out successfully
+                  statusCode:
+                    type: number
+                    example: 200
+                  success:
+                    type: boolean
+                    example: true
+              examples:
+                Logout user:
+                  value:
+                    statusCode: 200
+                    data: {}
+                    message: User logged out successfully
+                    success: true
+  /user/refresh-token:
+    post:
+      tags:
+        - 🔐 Authentication
+      summary: Refresh token
+      description: >-
+        The Refresh Access Token API is responsible for refreshing the access
+        token when it expires.
+
+
+        It allows you to make a request to this endpoint with the refresh token,
+        which has a lengthy expiry time, to obtain a new access token.
+
+
+        Simultaneously, the API sets the new access token in a cookie for future
+        authentication purposes while replacing the expired one.
+
+
+        This functionality ensures continuous access to protected resources by
+        automatically renewing the access token **without requiring the user to
+        reauthenticate manually**.
+
+
+        By utilizing the refresh token, the API securely refreshes the access
+        token and updates it in the cookie, ensuring seamless and uninterrupted
+        access to authorized endpoints.
+      operationId: refreshToken
+      responses:
+        "200":
+          description: Refresh token
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      accessToken:
+                        type: string
+                        example: >-
+                          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDc2ZTM0ZWJlMWNmYjljYzA4YmQ0NDYiLCJlbWFpbCI6IndhamUuc2h1YmhhbTExMUBnbWFpbC5jb20iLCJ1c2VybmFtZSI6IndhamVzaHViaGFtIiwicm9sZSI6IlVTRVIiLCJpYXQiOjE2ODU1NjMyMjEsImV4cCI6MTY4NTY0OTYyMX0.o6vbC9qrMHV_FfQNFZX3h053eOHvBgbl0iQJSB5NeNc
+                      refreshToken:
+                        type: string
+                        example: >-
+                          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDc2ZTM0ZWJlMWNmYjljYzA4YmQ0NDYiLCJpYXQiOjE2ODU1NjMyMjEsImV4cCI6MTY4NjQyNzIyMX0.TJpj8-2qU__GI_dKDdrHwQvUWCFSFXCfgOuV6MV05UI
+                  message:
+                    type: string
+                    example: RefreshToken generated successfully
+                  statusCode:
+                    type: number
+                    example: 200
+                  success:
+                    type: boolean
+                    example: true
+              examples:
+                Refresh token:
+                  value:
+                    statusCode: 200
+                    data:
+                      accessToken: >-
+                        eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDc2ZTM0ZWJlMWNmYjljYzA4YmQ0NDYiLCJlbWFpbCI6IndhamUuc2h1YmhhbTExMUBnbWFpbC5jb20iLCJ1c2VybmFtZSI6IndhamVzaHViaGFtIiwicm9sZSI6IlVTRVIiLCJpYXQiOjE2ODU1NjMyMjEsImV4cCI6MTY4NTY0OTYyMX0.o6vbC9qrMHV_FfQNFZX3h053eOHvBgbl0iQJSB5NeNc
+                      refreshToken: >-
+                        eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDc2ZTM0ZWJlMWNmYjljYzA4YmQ0NDYiLCJpYXQiOjE2ODU1NjMyMjEsImV4cCI6MTY4NjQyNzIyMX0.TJpj8-2qU__GI_dKDdrHwQvUWCFSFXCfgOuV6MV05UI
+                    message: RefreshToken generated successfully
+                    success: true
+
+  /user/change-password:
+    post:
+      tags:
+        - 🔐 Authentication
+      summary: Change current password
+      description: >-
+        The Change Password API allows logged-in users to update their current
+        password by providing the old password as a verification step.
+
+
+        This API provides a secure mechanism for users to change their passwords
+        within the application.
+
+
+        By accessing this endpoint and providing the old password, users can
+        initiate the password change process and set a new password of their
+        choice.
+      operationId: changeCurrentPassword
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                newPassword:
+                  type: string
+                  example: test@123
+                oldPassword:
+                  type: string
+                  example: new@123
+            example:
+              newPassword: test@123
+              oldPassword: new@123
+      responses:
+        "200":
+          description: Change current password
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Password changed successfully
+                  statusCode:
+                    type: number
+                    example: 200
+                  success:
+                    type: boolean
+                    example: true
+              examples:
+                Change current password:
+                  value:
+                    statusCode: 200
+                    message: Password changed successfully
+                    success: true
+  /user/avatar-update:
+    patch:
+      tags:
+        - 🔐 Authentication
+      summary: Update avatar
+      description: >-
+        The API endpoint enables users to update their avatar or profile
+        picture.
+
+
+        By accessing this endpoint and providing the necessary parameters, users
+        can upload a new image file for their desired avatar.
+      operationId: updateAvatar
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                avatar:
+                  description: File
+                  type: string
+                  format: binary
+      responses:
+        "200":
+          description: Update avatar
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      _id:
+                        type: string
+                        example: 649e795264e7dba29b726936
+                      fullName:
+                        type: string
+                        example: krish desai
+                      userName:
+                        type: string
+                        example: doejohn  
+                      avatar:
+                        type: string
+                        example: https://via.placeholder.com/200x200.png
+                      coverImage:
+                        type: string
+                        example: https://via.placeholder.com/200x200.png
+                      watchHistory:
+                        type: array
+                        example: [
+                            65atbde315e39699acd57b8b,
+                            61arbde345e59699acd57567,
+                            62ab6de316e59699acd54568,
+                          ]
+                      email:
+                        type: string
+                        example: user.email@domain.com
+                      createdAt:
+                        type: string
+                        example: "2023-06-30T06:42:26.163Z"
+                      updatedAt:
+                        type: string
+                        example: "2023-06-30T06:42:26.247Z"
+                      __v:
+                        type: number
+                        example: 0  
+                  message:
+                    type: string
+                    example: Avatar image updated successfully
+                  statusCode:
+                    type: number
+                    example: 200
+                  success:
+                    type: boolean
+                    example: true
+              examples:
+                Update avatar:
+                  value:
+                    statusCode: 200
+                    data:
+                      _id: 649e795264e7dba29b726936
+                      userName: kd117
+                      fullName: krish desai
+                      email: user.email@domain.com
+                      coverImage: http://res.cloudinary.com/dmquxwp9s/image/upload/v1705821933/p7iunslxb80i58wbbs0d.jpg
+                      avatar: http://res.cloudinary.com/dmquxwp9s/image/upload/v1705821933/p7iunslxb80i58wbbs0d.jpg
+                      watchHistory: [
+                          65atbde315e39699acd57b8b,
+                          61arbde345e59699acd57567,
+                          62ab6de316e59699acd54568,
+                        ]
+                      createdAt: "2023-06-30T06:42:26.163Z"
+                      updatedAt: "2023-06-30T06:42:26.247Z"
+                      __v: 0
+                    message: Avatar image updated successfully
+                    success: true
+
+  /user/update-account:
+    patch:
+      tags:
+        - 🔐 Authentication
+      summary: Update user information like email,username,full name
+      description: >-
+        The API endpoint enables users to update their profile information like `email`,`username`,`fullname`. By accessing this endpoint and providing the necessary parameters, users can update their profile information.
+
+      operationId: update user information
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: krishdesai@gmail.com
+                userName:
+                  type: string
+                  example: kd117
+                fullName:
+                  type: string
+                  example: desai krish b
+            example:
+              userName: test
+              email: test@gmail.com
+              fullName: demo test
+      responses:
+        "200":
+          description: Update user information
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      __v:
+                        type: number
+                        example: 0
+                      _id:
+                        type: string
+                        example: 649e795264e7dba29b726936
+                      avatar:
+                        type: string
+                        example: https://via.placeholder.com/200x200.png
+                      coverImage:
+                        type: string
+                        example: https://via.placeholder.com/200x200.png
+                      watchHistory:
+                        type: array
+                        example: [
+                            65atbde315e39699acd57b8b,
+                            61arbde345e59699acd57567,
+                            62ab6de316e59699acd54568,
+                          ]
+                      createdAt:
+                        type: string
+                        example: "2023-06-30T06:42:26.163Z"
+                      refreshToken :
+                        type: string
+                        example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjVkZWNiZjMwMThhNWNhZWM3NDNlMTEiLCJpYXQiOjE3MTc0MzIxNzMsImV4cCI6MTcxODI5NjE3M30.UUYvwBXZcbeKWh75YvNQ2SZO0fiRcjJoZ-6B-mSWBNE"  
+                      email:
+                        type: string
+                        example: user.email@domain.com
+                      fullName:
+                        type: string
+                        example: krish desai
+                      updatedAt:
+                        type: string
+                        example: "2023-06-30T06:42:26.247Z"
+                      username:
+                        type: string
+                        example: doejohn
+                  message:
+                    type: string
+                    example: Account details updated successFully
+                  statusCode:
+                    type: number
+                    example: 200
+                  success:
+                    type: boolean
+                    example: true
+              examples:
+                Update User Profile:
+                  value:
+                    data:
+                      __v: 0
+                      _id: 649e795264e7dba29b726936
+                      userName: kd117
+                      fullName: krish desai
+                      email: user.email@domain.com
+                      coverImage: http://res.cloudinary.com/dmquxwp9s/image/upload/v1705821933/p7iunslxb80i58wbbs0d.jpg
+                      avatar: http://res.cloudinary.com/dmquxwp9s/image/upload/v1705821933/p7iunslxb80i58wbbs0d.jpg
+                      watchHistory: [
+                          65atbde315e39699acd57b8b,
+                          61arbde345e59699acd57567,
+                          62ab6de316e59699acd54568,
+                        ]
+                      createdAt: "2023-06-30T06:42:26.163Z"
+                      updatedAt: "2023-06-30T06:42:26.247Z"
+                      refreshToken: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjVkZWNiZjMwMThhNWNhZWM3NDNlMTEiLCJpYXQiOjE3MTc0MzIxNzMsImV4cCI6MTcxODI5NjE3M30.UUYvwBXZcbeKWh75YvNQ2SZO0fiRcjJoZ-6B-mSWBNE"
+                    message: Account details updated successFully
+                    statusCode: 200
+                    success: true
+
+  /user/cover-image-update:
+    patch:
+      tags:
+        - 🔐 Authentication
+      summary: Update cover image
+      description: >-
+        The API endpoint enables users to update their cover image or profile
+        picture.
+
+
+        By accessing this endpoint and providing the necessary parameters, users
+        can upload a new image file for their desired cover image.
+      operationId: updateCoverImage
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                coverImage:
+                  description: File
+                  type: string
+                  format: binary
+      responses:
+        "200":
+          description: Update cover image
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      __v:
+                        type: number
+                        example: 0
+                      _id:
+                        type: string
+                        example: 649e795264e7dba29b726936
+                      avatar:
+                        type: string
+                        example: https://via.placeholder.com/200x200.png
+                      coverImage:
+                        type: string
+                        example: https://via.placeholder.com/200x200.png
+                      watchHistory:
+                        type: array
+                        example: [
+                            65atbde315e39699acd57b8b,
+                            61arbde345e59699acd57567,
+                            62ab6de316e59699acd54568,
+                          ]
+                      createdAt:
+                        type: string
+                        example: "2023-06-30T06:42:26.163Z"
+                      email:
+                        type: string
+                        example: user.email@domain.com
+                      fullName:
+                        type: string
+                        example: krish desai
+                      updatedAt:
+                        type: string
+                        example: "2023-06-30T06:42:26.247Z"
+                      username:
+                        type: string
+                        example: doejohn
+                  message:
+                    type: string
+                    example: Cover image updated successFully
+                  statusCode:
+                    type: number
+                    example: 200
+                  success:
+                    type: boolean
+                    example: true
+              examples:
+                Update avatar:
+                  value:
+                    data:
+                      __v: 0
+                      _id: 649e795264e7dba29b726936
+                      userName: kd117
+                      fullName: krish desai
+                      email: user.email@domain.com
+                      coverImage: http://res.cloudinary.com/dmquxwp9s/image/upload/v1705821933/p7iunslxb80i58wbbs0d.jpg
+                      avatar: http://res.cloudinary.com/dmquxwp9s/image/upload/v1705821933/p7iunslxb80i58wbbs0d.jpg
+                      watchHistory: [
+                          65atbde315e39699acd57b8b,
+                          61arbde345e59699acd57567,
+                          62ab6de316e59699acd54568,
+                        ]
+                      createdAt: "2023-06-30T06:42:26.163Z"
+                      updatedAt: "2023-06-30T06:42:26.247Z"
+                    message: Cover image updated successFully
+                    statusCode: 200
+                    success: true
+
+  /user/channel-profile/{username}:
+    get:
+      tags:
+        - 🔐 Authentication
+      summary: Get user's channel profile
+      parameters:
+        - in: path
+          name: username
+          schema:
+            type: string
+          required: true
+          description: The username of the user whose channel profile is to be fetched
+      description: >-
+        The API endpoint allows you to retrieve the details of the user youtube channel
+
+
+        When accessing this endpoint with a valid authentication token, you will
+        receive a response containing the information of the user youtube channel
+      operationId: getUserChannel
+      responses:
+        "200":
+          description: Get user channel details
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      __v:
+                        type: number
+                        example: 0
+                      _id:
+                        type: string
+                        example: 649e795264e7dba29b726936
+                      fullName:
+                        type: string
+                        example: doejohn
+                      userName:
+                        type: string
+                        example: doe90    
+                      avatar:
+                        type: string
+                        example: https://via.placeholder.com/200x200.png
+                      email:
+                        type: string
+                        example: user.email@domain.com
+                      isSubscribe:
+                        type: boolean
+                        example: true  
+                      subscribersCount:
+                        type: number
+                        example: 455000
+                      channelsSubscribedToCount:
+                        type: number
+                        example: 67000
+                  message:
+                    type: string
+                    example: Channel is fetched successfully
+                  statusCode:
+                    type: number
+                    example: 200
+                  success:
+                    type: boolean
+                    example: true
+              examples:
+                Get user channel profile:
+                  value:
+                    data:
+                      __v: 0
+                      _id: 649e795264e7dba29b726936
+                      fullName: doejohn
+                      userName: doe90
+                      avatar: https://via.placeholder.com/200x200.png
+                      email: user.email@domain.com
+                      subscribersCount: 455000
+                      channelsSubscribedToCount: 67000
+                      isSubscribe": false
+                    message: Channel is fetched successfully
+                    statusCode: 200
+                    success: true
+
+  /user/history:
+    get:
+      tags:
+        - 🔐 Authentication
+      summary: Get user's watch history
+      description: >-
+        The API endpoint allows you to retrieve the details of the user watch history
+
+
+        When accessing this endpoint with a valid authentication token, you will
+        receive a response containing the information of the user watch history
+      operationId: getUserWatchHistory
+      responses:
+        "200":
+          description: Get user watch history
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      __v:
+                        type: number
+                        example: 0
+                      _id:
+                        type: string
+                        example: 649e795264e7dba29b726936
+                      avatar:
+                        type: string
+                        example: https://via.placeholder.com/200x200.png
+                      coverImage:
+                        type: string
+                        example: https://via.placeholder.com/200x200.png
+                      email:
+                        type: string
+                        example: user.email@domain.com
+                      fullName:
+                        type: string
+                        example: doejohn
+                      userName:
+                        type: string
+                        example: doe23
+                      updatedAt:
+                        type: string
+                        example: "2023-06-30T06:42:26.247Z"
+                      createdAt:
+                        type: string
+                        example: "2023-06-30T06:42:26.247Z"
+                      watchHistory:
+                        type: array
+                        properties:
+                            _id:
+                              type: string
+                              example: 65abbde315e59699acd57b8b
+                            videoFile:
+                              type: array
+                              videos:
+                                type: object
+                                properties:
+                                  _id:
+                                    type: string
+                                    example: 65abbde315e59699acd57b8b
+                                  publicId:
+                                    type: string
+                                    example: g26kngm9d9eelqpd3dpa
+                                  url:
+                                    type: string
+                                    example: https://via.placeholder.com/200x200.png
+                            thumbnail:
+                              type: array
+                              videos:
+                                type: object
+                                properties:
+                                _id:
+                                  type: string
+                                  example: 65abbde315e59699acd57b8b
+                                publicId:
+                                  type: string
+                                  example: g26kngm9d9eelqpd3dpa
+                                url:
+                                  type: string
+                                  example: https://via.placeholder.com/200x200.png
+                            title:
+                              type: string
+                              example: chai aur code
+                            description:
+                              type: string
+                              example: pro level node  js nest js backend course
+                            duration:
+                              type: string
+                              example: 16.319979
+                            views:
+                              type: number
+                              example: 0
+                            isPublished:
+                              type: boolean
+                              example: true
+                            owner:
+                              type: object
+                              properties:
+                                _id:
+                                  type: string
+                                  example: 649e795264e7dba29b726936
+                                userName:
+                                  type: string
+                                  example: doe23
+                                fullName:
+                                  type: string
+                                  example: doejohn
+                                avatar:
+                                  type: string
+                                  example: https://res.cloudinary.com/dmquxwp9s/image/upload/v1705753634/l5geqxh8dapombujjzvm.jpg
+                  message:
+                    type: string
+                    example: Watch history fetched successfully
+                  statusCode:
+                    type: number
+                    example: 200
+                  success:
+                    type: boolean
+                    example: true
+              examples:
+                Get user channel profile:
+                  value:
+                    data:
+                      __v: 0
+                      _id: 649e795264e7dba29b726936
+                      fullName: doejohn
+                      userName: doe90
+                      email: user.email@domain.com
+                      avatar: https://via.placeholder.com/200x200.png
+                      coverImage: https://via.placeholder.com/200x200.png
+                      watchHistory:
+                          [
+                            {
+                              _id: 65abbde315e59699acd57b8b,
+                              videoFile:
+                                [
+                                  {
+                                    _id: 65abbde315e59699acd57b8b,
+                                    publicId: g26kngm9d9eelqpd3dpa,
+                                    url: https://via.placeholder.com/200x200.png,
+                                  },
+                                ],
+                              thumbnail:
+                                [
+                                  {
+                                    _id: 65abbde315e59699acd57b8b,
+                                    publicId: g26kngm9d9eelqpd3dpa,
+                                    url: https://via.placeholder.com/200x200.png,
+                                  },
+                                ],
+                              title: chai aur code,
+                              description: pro level node  js nest js backend course,
+                              duration: 16.319979,
+                              views: 0,
+                              isPublished: true,
+                              owner:
+                                {
+                                  _id: 649e795264e7dba29b726936,
+                                  userName: doe23,
+                                  fullName: doejohn,
+                                  avatar: https://res.cloudinary.com/dmquxwp9s/image/upload/v1705753634/l5geqxh8dapombujjzvm.jpg,
+                                },
+                            },
+                            {
+                              _id: 65ad03f26fed3160eba0650e,
+                              videoFile:
+                                [
+                                  {
+                                    url: "https://res.cloudinary.com/dmquxwp9s/video/upload/v1705837379/jqakgbwht1jvur5lorgv.mp4",
+                                    publicId: "jqakgbwht1jvur5lorgv",
+                                    _id: "65ad03f26fed3160eba0650f",
+                                  },
+                                ],
+                              thumbnail:
+                                [
+                                  {
+                                    url: "https://res.cloudinary.com/dmquxwp9s/image/upload/v1705837381/oju19npqcsizoxnv1w1k.jpg",
+                                    publicId: "oju19npqcsizoxnv1w1k",
+                                    _id: "65ad03f26fed3160eba06510",
+                                  },
+                                ],
+                              title: "react js",
+                              description: "pro level react js",
+                              duration: "16.319979",
+                              views: 0,
+                              isPublished: true,
+                              isForKids: 0,
+                              isRestrict: 0,
+                              owner:
+                                {
+                                  _id: "65abbccf15e59699acd57b77",
+                                  userName: "user1",
+                                  avatar: "https://res.cloudinary.com/dmquxwp9s/image/upload/v1705753634/l5geqxh8dapombujjzvm.jpg",
+                                  fullName: "u1",
+                                },
+                              createdAt: "2024-01-21T11:45:54.717Z",
+                              updatedAt: "2024-01-21T11:45:54.717Z",
+                              __v: 0,
+                            },
+                          ]
+                    message: Watch history fetched successfully
+                    statusCode: 200
+                    success: true
+
+  /videos/upload:
+    post:
+      tags:
+        - ▶️ youtube
+      summary: upload video
+      description: >-
+        The API endpoint allows users to upload videos
+      operationId: upload video
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  example: react js
+                description:
+                  type: string
+                  example: pro level react js
+                videoFile:
+                  description: File
+                  type: string
+                  format: binary
+                thumbnail:
+                  description: File
+                  type: string
+                  format: binary
+            example:
+              title: react js
+              description: pro level react js
+      responses:
+        "201":
+          description: upload video
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      user:
+                        type: object
+                        properties:
+                          _id:
+                            type: string
+                            example: 65abbde315e59699acd57b8b
+                          videoFile:
+                            type: array
+                            videos:
+                              type: object
+                              properties:
+                                _id:
+                                  type: string
+                                  example: 65abbde315e59699acd57b8b
+                                publicId:
+                                  type: string
+                                  example: g26kngm9d9eelqpd3dpa
+                                url:
+                                  type: string
+                                  example: https://via.placeholder.com/200x200.png
+                          thumbnail:
+                            type: array
+                            videos:
+                              type: object
+                              properties:
+                              _id:
+                                type: string
+                                example: 65abbde315e59699acd57b8b
+                              publicId:
+                                type: string
+                                example: g26kngm9d9eelqpd3dpa
+                              url:
+                                type: string
+                                example: https://via.placeholder.com/200x200.png
+                          title:
+                            type: string
+                            example: chai aur code
+                          description:
+                            type: string
+                            example: pro level node  js nest js backend course
+                          duration:
+                            type: string
+                            example: 16.319979
+                          views:
+                            type: number
+                            example: 0
+                          isPublished:
+                            type: boolean
+                            example: true
+                          owner:
+                            type: string
+                            example: 649e795264e7dba29b726936
+                  message:
+                    type: string
+                    example: >-
+                     Upload video successfully
+                  statusCode:
+                    type: number
+                    example: 200
+                  success:
+                    type: boolean
+                    example: true
+              examples:
+                upload video:
+                  value:
+                    data:
+                        _id: 65ad03f26fed3160eba0650e,
+                        videoFile:
+                          [
+                            {
+                              url: "https://res.cloudinary.com/dmquxwp9s/video/upload/v1705837379/jqakgbwht1jvur5lorgv.mp4",
+                              publicId: "jqakgbwht1jvur5lorgv",
+                              _id: "65ad03f26fed3160eba0650f",
+                            },
+                          ]
+                        thumbnail:
+                          [
+                            {
+                              url: "https://res.cloudinary.com/dmquxwp9s/image/upload/v1705837381/oju19npqcsizoxnv1w1k.jpg",
+                              publicId: "oju19npqcsizoxnv1w1k",
+                              _id: "65ad03f26fed3160eba06510",
+                            },
+                          ]
+                        title: react js
+                        description: pro level react js
+                        duration: "16.319979"
+                        views: 10
+                        isPublished: true
+                        isForKids: 0
+                        isRestrict: 0
+                        owner: 65abbccf15e59699acd57b77
+                        createdAt: "2024-01-21T11:45:54.717Z"
+                        updatedAt: "2024-01-21T11:45:54.717Z"
+                        __v: 0
+
+                    message: >-
+                          Upload video successfully
+                    statusCode: 200
+                    success: true
+
+  /videos/result:
+    get:
+      tags:
+        - ▶️ youtube
+      summary: get all videos
+      description: >-
+        The API endpoint allows users to retrieve all videos
+      operationId: get all videos
+      parameters:
+        - in: query
+          name: page
+          schema:
+            type: integer
+          description: The number of videos to skip before starting to collect the result set
+        - in: query
+          name: limit
+          schema:
+            type: integer
+          description: The numbers of videos to return
+        - in: query
+          name: sortBy
+          schema:
+            type: string
+          description: The numbers of videos to return sortBy asc | desc
+        - in: query
+          name: sortType
+          schema:
+            type: string
+          description: The numbers of items to return sortType uploadDate | viewCount
+        - in: query
+          name: userId
+          schema:
+            type: string
+          description: The numbers of videos to return according userId
+        - in: query
+          name: query
+          schema:
+            type: string
+          description: The numbers of videos to return according user query
+      responses:
+        "201":
+          description: get all videos
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      user:
+                        type: object
+                        properties:
+                          _id:
+                            type: string
+                            example: 65abbde315e59699acd57b8b
+                          videoFile:
+                            type: array
+                            videos:
+                              type: object
+                              properties:
+                                _id:
+                                  type: string
+                                  example: 65abbde315e59699acd57b8b
+                                publicId:
+                                  type: string
+                                  example: g26kngm9d9eelqpd3dpa
+                                url:
+                                  type: string
+                                  example: https://via.placeholder.com/200x200.png
+                          thumbnail:
+                            type: array
+                            videos:
+                              type: object
+                              properties:
+                              _id:
+                                type: string
+                                example: 65abbde315e59699acd57b8b
+                              publicId:
+                                type: string
+                                example: g26kngm9d9eelqpd3dpa
+                              url:
+                                type: string
+                                example: https://via.placeholder.com/200x200.png
+                          title:
+                            type: string
+                            example: chai aur code
+                          description:
+                            type: string
+                            example: pro level node  js nest js backend course
+                          duration:
+                            type: string
+                            example: 16.319979
+                          views:
+                            type: number
+                            example: 0
+                          isPublished:
+                            type: boolean
+                            example: true
+                          isLiked:
+                            type: boolean
+                            example: false
+                          likes:
+                            type: number
+                            example: 200    
+                          owner:
+                            type: string
+                            example: 649e795264e7dba29b726936
+                  message:
+                    type: string
+                    example: >-
+                      Videos fetched successfully
+                  statusCode:
+                    type: number
+                    example: 200
+                  success:
+                    type: boolean
+                    example: true
+              examples:
+                get all videos:
+                  value:
+                    data:
+                      videos:
+                        [
+                          {
+                            _id: 65abbde315e59699acd57b8b,
+                            videoFile:
+                              [
+                                {
+                                  _id: 65abbde315e59699acd57b8b,
+                                  publicId: g26kngm9d9eelqpd3dpa,
+                                  url: https://via.placeholder.com/200x200.png,
+                                },
+                              ],
+                            thumbnail:
+                              [
+                                {
+                                  _id: 65abbde315e59699acd57b8b,
+                                  publicId: g26kngm9d9eelqpd3dpa,
+                                  url: https://via.placeholder.com/200x200.png,
+                                },
+                              ],
+                            title: chai aur code,
+                            description: pro level node  js nest js backend course,
+                            duration: 16.319979,
+                            views: 0,
+                            isPublished: true,
+                            isLiked: false,
+                            likes: 200,
+                            owner:
+                              {
+                                userName: doe23,
+                                avatar: https://res.cloudinary.com/dmquxwp9s/image/upload/v1705753634/l5geqxh8dapombujjzvm.jpg,
+                              },
+                          },
+                          {
+                            _id: 65ad03f26fed3160eba0650e,
+                            videoFile:
+                              [
+                                {
+                                  url: "https://res.cloudinary.com/dmquxwp9s/video/upload/v1705837379/jqakgbwht1jvur5lorgv.mp4",
+                                  publicId: "jqakgbwht1jvur5lorgv",
+                                  _id: "65ad03f26fed3160eba0650f",
+                                },
+                              ],
+                            thumbnail:
+                              [
+                                {
+                                  url: "https://res.cloudinary.com/dmquxwp9s/image/upload/v1705837381/oju19npqcsizoxnv1w1k.jpg",
+                                  publicId: "oju19npqcsizoxnv1w1k",
+                                  _id: "65ad03f26fed3160eba06510",
+                                },
+                              ],
+                            title: "react js",
+                            description: "pro level react js",
+                            duration: "16.319979",
+                            views: 0,
+                            isPublished: true,
+                            isLiked: false,
+                            likes: 200,
+                            owner:
+                              {
+                                userName: "user1",
+                                avatar: "https://res.cloudinary.com/dmquxwp9s/image/upload/v1705753634/l5geqxh8dapombujjzvm.jpg",
+                              },
+                            createdAt: "2024-01-21T11:45:54.717Z",
+                            updatedAt: "2024-01-21T11:45:54.717Z",
+                            __v: 0,
+                          },
+                        ]
+                      totalVideos: 2
+                      limit: 10
+                      page: 1
+                      totalPages: 1
+                      serialNumberStartFrom: 1
+                      hasPrevPage: false
+                      hasNextPage: false
+                      prevPage: null
+                      nextPage: null
+
+                    message: >-
+                      all videos fetched successfully
+                    statusCode: 200
+                    success: true
+  /videos/app:
+    get:
+      tags:
+        - ▶️ youtube
+      summary: get video app videos
+      description: >-
+        The API endpoint allows users to retrieve all videos without authentication
+      responses:
+        "200":
+          description: get video app videos
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      user:
+                        type: object
+                        properties:
+                          _id:
+                            type: string
+                            example: 65abbde315e59699acd57b8b
+                          videoFile:
+                            type: array
+                            videos:
+                              type: object
+                              properties:
+                                _id:
+                                  type: string
+                                  example: 65abbde315e59699acd57b8b
+                                publicId:
+                                  type: string
+                                  example: g26kngm9d9eelqpd3dpa
+                                url:
+                                  type: string
+                                  example: https://via.placeholder.com/200x200.png
+                          thumbnail:
+                            type: array
+                            videos:
+                              type: object
+                              properties:
+                              _id:
+                                type: string
+                                example: 65abbde315e59699acd57b8b
+                              publicId:
+                                type: string
+                                example: g26kngm9d9eelqpd3dpa
+                              url:
+                                type: string
+                                example: https://via.placeholder.com/200x200.png
+                          title:
+                            type: string
+                            example: chai aur code
+                          description:
+                            type: string
+                            example: pro level node  js nest js backend course
+                          duration:
+                            type: string
+                            example: 16.319979
+                          views:
+                            type: number
+                            example: 0
+                          isPublished:
+                            type: boolean
+                            example: true
+                          likes:
+                            type: number
+                            example: 200    
+                          owner:
+                            type: string
+                            example: 649e795264e7dba29b726936
+                  message:
+                    type: string
+                    example: >-
+                      videos fetched successfully
+                  statusCode:
+                    type: number
+                    example: 200
+                  success:
+                    type: boolean
+                    example: true
+              examples:
+                get all videos:
+                  value:
+                    data:
+                      videos:
+                        [
+                          {
+                            _id: 65abbde315e59699acd57b8b,
+                            videoFile:
+                              [
+                                {
+                                  _id: 65abbde315e59699acd57b8b,
+                                  publicId: g26kngm9d9eelqpd3dpa,
+                                  url: https://via.placeholder.com/200x200.png,
+                                },
+                              ],
+                            thumbnail:
+                              [
+                                {
+                                  _id: 65abbde315e59699acd57b8b,
+                                  publicId: g26kngm9d9eelqpd3dpa,
+                                  url: https://via.placeholder.com/200x200.png,
+                                },
+                              ],
+                            title: chai aur code,
+                            description: pro level node  js nest js backend course,
+                            duration: 16.319979,
+                            views: 0,
+                            isPublished: true,
+                            likes: 200,
+                            owner:
+                              {
+                                userName: doe23,
+                                avatar: https://res.cloudinary.com/dmquxwp9s/image/upload/v1705753634/l5geqxh8dapombujjzvm.jpg,
+                              },
+                          },
+                          {
+                            _id: 65ad03f26fed3160eba0650e,
+                            videoFile:
+                              [
+                                {
+                                  url: "https://res.cloudinary.com/dmquxwp9s/video/upload/v1705837379/jqakgbwht1jvur5lorgv.mp4",
+                                  publicId: "jqakgbwht1jvur5lorgv",
+                                  _id: "65ad03f26fed3160eba0650f",
+                                },
+                              ],
+                            thumbnail:
+                              [
+                                {
+                                  url: "https://res.cloudinary.com/dmquxwp9s/image/upload/v1705837381/oju19npqcsizoxnv1w1k.jpg",
+                                  publicId: "oju19npqcsizoxnv1w1k",
+                                  _id: "65ad03f26fed3160eba06510",
+                                },
+                              ],
+                            title: "react js",
+                            description: "pro level react js",
+                            duration: "16.319979",
+                            views: 0,
+                            isPublished: true,
+                            likes: 200,
+                            owner:
+                              {
+                                userName: "user1",
+                                avatar: "https://res.cloudinary.com/dmquxwp9s/image/upload/v1705753634/l5geqxh8dapombujjzvm.jpg",
+                              },
+                            createdAt: "2024-01-21T11:45:54.717Z",
+                            updatedAt: "2024-01-21T11:45:54.717Z",
+                            __v: 0,
+                          },
+                        ]
+                      totalVideos: 2
+                      limit: 10
+                      page: 1
+                      totalPages: 1
+                      serialNumberStartFrom: 1
+                      hasPrevPage: false
+                      hasNextPage: false
+                      prevPage: null
+                      nextPage: null
+
+                    message: >-
+                      videos fetched successfully
+                    statusCode: 200
+                    success: true                 
+  
+  /videos/{videoId}:
+    get:
+      tags:
+        - ▶️ youtube
+      summary: get video by id
+      description: >-
+        The API endpoint allows users to retrieve one video according videoId
+      operationId: get video by id
+      parameters:
+        - $ref: "#/components/parameters/videoParam"
+      responses:
+        "201":
+          description: get video by id
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      video:
+                        type: object
+                        properties:
+                          _id:
+                            type: string
+                            example: 65abbde315e59699acd57b8b
+                          videoFile:
+                            type: array
+                            videos:
+                              type: object
+                              properties:
+                                _id:
+                                  type: string
+                                  example: 65abbde315e59699acd57b8b
+                                publicId:
+                                  type: string
+                                  example: g26kngm9d9eelqpd3dpa
+                                url:
+                                  type: string
+                                  example: https://via.placeholder.com/200x200.png
+                          thumbnail:
+                            type: array
+                            videos:
+                              type: object
+                              properties:
+                              _id:
+                                type: string
+                                example: 65abbde315e59699acd57b8b
+                              publicId:
+                                type: string
+                                example: g26kngm9d9eelqpd3dpa
+                              url:
+                                type: string
+                                example: https://via.placeholder.com/200x200.png
+                          title:
+                            type: string
+                            example: chai aur code
+                          description:
+                            type: string
+                            example: pro level node  js nest js backend course
+                          duration:
+                            type: string
+                            example: 16.319979
+                          views:
+                            type: number
+                            example: 0
+                          isPublished:
+                            type: boolean
+                            example: true
+                          owner:
+                            type: string
+                            example: 649e795264e7dba29b726936
+                  message:
+                    type: string
+                    example: >-
+                      Video fetched successfully
+                  statusCode:
+                    type: number
+                    example: 200
+                  success:
+                    type: boolean
+                    example: true
+              examples:
+                get one video:
+                  value:
+                    data:
+                        {
+                          _id: 65ad03f26fed3160eba0650e,
+                          videoFile:
+                            [
+                              {
+                                url: "https://res.cloudinary.com/dmquxwp9s/video/upload/v1705837379/jqakgbwht1jvur5lorgv.mp4",
+                                publicId: "jqakgbwht1jvur5lorgv",
+                                _id: "65ad03f26fed3160eba0650f",
+                              },
+                            ],
+                          thumbnail:
+                            [
+                              {
+                                url: "https://res.cloudinary.com/dmquxwp9s/image/upload/v1705837381/oju19npqcsizoxnv1w1k.jpg",
+                                publicId: "oju19npqcsizoxnv1w1k",
+                                _id: "65ad03f26fed3160eba06510",
+                              },
+                            ],
+                          title: "react js",
+                          description: "pro level react js",
+                          duration: "16.319979",
+                          views: 110,
+                          isPublished: true,
+                          isLiked: true,
+                          likes: 1200,
+                          owner:
+                            {
+                              userName: "user1",
+                              avatar: "https://res.cloudinary.com/dmquxwp9s/image/upload/v1705753634/l5geqxh8dapombujjzvm.jpg",
+                            },
+                          createdAt: "2024-01-21T11:45:54.717Z",
+                          updatedAt: "2024-01-21T11:45:54.717Z",
+                          __v: 0,
+                        }
+                    message: >-
+                      Video fetched successfully
+                    statusCode: 200
+                    success: true
+    patch:
+      tags:
+        - ▶️ youtube
+      summary: change video details
+      parameters:
+        - $ref: "#/components/parameters/videoParam"
+      description: >-
+        The API endpoint allows users change video details
+      operationId: change video details
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  example: react js
+                description:
+                  type: string
+                  example: pro level react js
+            example:
+              title: react js
+              description: pro level react js
+      responses:
+        "201":
+          description: change video details
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      user:
+                        type: object
+                        properties:
+                          _id:
+                            type: string
+                            example: 65abbde315e59699acd57b8b
+                          videoFile:
+                            type: array
+                            videos:
+                              type: object
+                              properties:
+                                _id:
+                                  type: string
+                                  example: 65abbde315e59699acd57b8b
+                                publicId:
+                                  type: string
+                                  example: g26kngm9d9eelqpd3dpa
+                                url:
+                                  type: string
+                                  example: https://via.placeholder.com/200x200.png
+                          thumbnail:
+                            type: array
+                            videos:
+                              type: object
+                              properties:
+                              _id:
+                                type: string
+                                example: 65abbde315e59699acd57b8b
+                              publicId:
+                                type: string
+                                example: g26kngm9d9eelqpd3dpa
+                              url:
+                                type: string
+                                example: https://via.placeholder.com/200x200.png
+                          title:
+                            type: string
+                            example: chai aur code
+                          description:
+                            type: string
+                            example: pro level node  js nest js backend course
+                          duration:
+                            type: string
+                            example: 16.319979
+                          views:
+                            type: number
+                            example: 0
+                          isPublished:
+                            type: boolean
+                            example: true
+                          owner:
+                            type: string
+                            example: 649e795264e7dba29b726936
+                  message:
+                    type: string
+                    example: >-
+                      Video updated successfully
+                  statusCode:
+                    type: number
+                    example: 200
+                  success:
+                    type: boolean
+                    example: true
+              examples:
+                update video details:
+                  value:
+                    data:
+                        _id: 65ad03f26fed3160eba0650e,
+                        videoFile:
+                          [
+                            {
+                              url: "https://res.cloudinary.com/dmquxwp9s/video/upload/v1705837379/jqakgbwht1jvur5lorgv.mp4",
+                              publicId: "jqakgbwht1jvur5lorgv",
+                              _id: "65ad03f26fed3160eba0650f",
+                            },
+                          ]
+                        thumbnail:
+                          [
+                            {
+                              url: "https://res.cloudinary.com/dmquxwp9s/image/upload/v1705837381/oju19npqcsizoxnv1w1k.jpg",
+                              publicId: "oju19npqcsizoxnv1w1k",
+                              _id: "65ad03f26fed3160eba06510",
+                            },
+                          ]
+                        title: react js
+                        description: pro level react js
+                        duration: "16.319979"
+                        views: 2200
+                        isPublished: true
+                        isForKids: 0
+                        isRestrict: 0
+                        owner: 65abbccf15e59699acd57b77
+                        createdAt: "2024-01-21T11:45:54.717Z"
+                        updatedAt: "2024-01-21T11:45:54.717Z"
+                        __v: 0
+
+                    message: >-
+                      Video updated successfully.
+                    statusCode: 200
+                    success: true
+
+    delete:
+      tags:
+        - ▶️ youtube
+      summary: delete video
+      parameters:
+        - $ref: "#/components/parameters/videoParam"
+      description: >-
+        The API endpoint allows user delete video
+      operationId: delete video
+      responses:
+        "201":
+          description: delete video
+          content:
+            application/json:
+              schema:
+                message:
+                  type: string
+                  example: >-
+                    Video deleted successfully
+                statusCode:
+                  type: number
+                  example: 200
+                success:
+                  type: boolean
+                  example: true
+              examples:
+                video delete:
+                  value:
+                    statusCode: 200
+                    message: >-
+                      Video deleted successfully
+                    success: true
+
+  /videos/change-upload-video/{videoId}:
+    patch:
+      tags:
+        - ▶️ youtube
+      summary: change upload video
+      parameters:
+        - $ref: "#/components/parameters/videoParam"
+      description: >-
+        The API endpoint allows users change upload video
+      operationId: change upload video
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                videoFile:
+                  description: File
+                  type: string
+                  format: binary
+      responses:
+        "200":
+          description: change upload video
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      user:
+                        type: object
+                        properties:
+                          _id:
+                            type: string
+                            example: 65abbde315e59699acd57b8b
+                          videoFile:
+                            type: array
+                            videos:
+                              type: object
+                              properties:
+                                _id:
+                                  type: string
+                                  example: 65abbde315e59699acd57b8b
+                                publicId:
+                                  type: string
+                                  example: g26kngm9d9eelqpd3dpa
+                                url:
+                                  type: string
+                                  example: https://via.placeholder.com/200x200.png
+                          duration:
+                            type: string
+                            example: 16.319979
+                         
+                  message:
+                    type: string
+                    example: >-
+                      video file updated successfully
+                  statusCode:
+                    type: number
+                    example: 200
+                  success:
+                    type: boolean
+                    example: true
+              examples:
+                update video file:
+                  value:
+                    data:
+                        _id: 65ad03f26fed3160eba0650e
+                        videoFile:
+                          [
+                            {
+                              url: "https://res.cloudinary.com/dmquxwp9s/video/upload/v1705837379/jqakgbwht1jvur5lorgv.mp4",
+                              publicId: "jqakgbwht1jvur5lorgv",
+                              _id: "65ad03f26fed3160eba0650f",
+                            },
+                          ]
+                        duration: "16.319979"
+
+                    message: >-
+                      video file updated successfully
+                    statusCode: 200
+                    success: true
+
+  /videos/change-upload-thumbnail/{videoId}:
+    patch:
+      tags:
+        - ▶️ youtube
+      summary: change upload video thumbnail
+      parameters:
+        - $ref: "#/components/parameters/videoParam"
+
+      description: >-
+        The API endpoint allows users change upload video
+      operationId: change upload video thumbnail
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                thumbnail:
+                  description: File
+                  type: string
+                  format: binary
+      responses:
+        "200":
+          description: change upload video thumbnail
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/videoSchema"
+              examples:
+                update video thumbnail:
+                  value:
+                    data:
+                        _id: 65ad03f26fed3160eba0650e
+                        thumbnail:
+                          [
+                            {
+                              url: "https://res.cloudinary.com/dmquxwp9s/image/upload/v1705837381/oju19npqcsizoxnv1w1k.jpg",
+                              publicId: "oju19npqcsizoxnv1w1k",
+                              _id: "65ad03f26fed3160eba06510",
+                            },
+                          ]
+
+                    message: >-
+                      Thumbnail file is update successfully
+                    statusCode: 200
+                    success: true
+
+  /videos/watch/{videoId}:
+    patch:
+      tags:
+        - ▶️ youtube
+      summary: watch video
+      parameters:
+        - $ref: "#/components/parameters/videoParam"
+      description: >-
+        The API endpoint allows user watch video
+      operationId: watch video
+      responses:
+        "200":
+          description: watch video
+          content:
+            application/json:
+              schema:
+                message:
+                  type: string
+                  example: >-
+                    Video watched successfully
+                statusCode:
+                  type: number
+                  example: 200
+                success:
+                  type: boolean
+                  example: true
+              examples:
+                watch video:
+                  value:
+                    statusCode: 200
+                    message: >-
+                      Video watched successfully
+                    success: true
+
+  /videos/toggle/publish/{videoId}:
+    patch:
+      tags:
+        - ▶️ youtube
+      summary: toggle Publish Status video
+      parameters:
+        - $ref: "#/components/parameters/videoParam"
+      description: >-
+        The API endpoint allows user toggle Publish Status video
+      operationId: toggle Publish Status video
+      responses:
+        "200":
+          description: toggle Publish Status video
+          content:
+            application/json:
+              schema:
+                isPublished:
+                  type: boolean
+                  example: true
+                message:
+                  type: string
+                  example: >-
+                    Video publish status updated successfully
+                statusCode:
+                  type: number
+                  example: 200
+                success:
+                  type: boolean
+                  example: true
+              examples:
+                toggle Publish Status video:
+                  value:
+                    data: 
+                        _id: 65b39479fd77f42e7e15b4c0
+                        isPublished: true
+                    message: >-
+                      Video publish status updated successfully
+                    statusCode: 200
+                    success: true
+
+  /healthcheck:
+    get:
+      tags:
+        - 🏃🏼‍♂️ healthcheck
+      summary: healthcheck
+      description: >-
+        This API endpoint is commonly used to determine the health status or
+        availability of a system or service.
+
+
+        It is a simple and lightweight endpoint designed to perform a quick
+        health check of the application or infrastructure.
+      operationId: healthcheck
+      responses:
+        "200":
+          description: healthcheck
+          headers:
+            Access-Control-Allow-Credentials:
+              schema:
+                type: string
+                example: "true"
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: "*"
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Content-Length:
+              schema:
+                type: string
+                example: "77"
+            Date:
+              schema:
+                type: string
+                example: Thu, 01 Jun 2023 05:43:54 GMT
+            ETag:
+              schema:
+                type: string
+                example: W/"4d-HsIML77lP0nFnY+in7vJJjHcLbQ"
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: string
+                    example: OK
+                  message:
+                    type: string
+                    example: Everything is working fine!
+                  statusCode:
+                    type: number
+                    example: 200
+                  success:
+                    type: boolean
+                    example: true
+              examples:
+                healthcheck:
+                  value:
+                    data: OK
+                    message: Everything is working fine!
+                    statusCode: 200
+                    success: true
+
+  /comments/{videoId}:
+    post:
+      tags:
+        - ▶️ youtube
+      summary: add comment on video
+      description: >-
+        The API endpoint allows users to add comment on video
+      operationId: add comment on video
+      parameters:
+        - $ref: "#/components/parameters/videoParam"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                content:
+                  type: string
+                  example: hey good video
+            example:
+              content: hey good video
+      responses:
+        "201":
+          description: add comment on video
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/commentSchema"
+
+              examples:
+                add comments:
+                  value:
+                    data:
+                      _id: 65ad03f26fed3160eba0650e,
+                      content: react js
+                      video: 65abbde315e59699acd57b8b
+                      owner: 65abbccf15e59699acd57b77
+                      createdAt: "2024-01-21T11:45:54.717Z"
+                      updatedAt: "2024-01-21T11:45:54.717Z"
+                      __v: 0
+
+                    message: >-
+                      Comment add to successfully.
+                    statusCode: 200
+                    success: true
+
+    get:
+      tags:
+        - ▶️ youtube
+      summary: get comments on video
+      description: >-
+        The API endpoint allows users get comments on video
+      operationId: get comments on video
+      parameters:
+        - $ref: "#/components/parameters/videoParam"
+      responses:
+        "201":
+          description: get comments on video
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/videoSchema"
+                comments:
+                  type: array
+                  properties:
+                    type: object
+                    properties: ref:"#/components/schemas/commentSchema"
+
+              examples:
+                get comments:
+                  value:
+                    data:
+
+                        _id: 65ad03f26fed3160eba0650e,
+                        videoFile:
+                          [
+                            {
+                              url: "https://res.cloudinary.com/dmquxwp9s/video/upload/v1705837379/jqakgbwht1jvur5lorgv.mp4",
+                              publicId: "jqakgbwht1jvur5lorgv",
+                              _id: "65ad03f26fed3160eba0650f",
+                            },
+                          ]
+                        thumbnail:
+                          [
+                            {
+                              url: "https://res.cloudinary.com/dmquxwp9s/image/upload/v1705837381/oju19npqcsizoxnv1w1k.jpg",
+                              publicId: "oju19npqcsizoxnv1w1k",
+                              _id: "65ad03f26fed3160eba06510",
+                            },
+                          ]
+                        title: react js
+                        description: pro level react js
+                        duration: "16.319979"
+                        views: 0
+                        comments:
+                          [
+                            {
+                              _id: 65abbed415e59699acd57ba0,
+                              content: amazing video u2,
+                              owner:
+                                {
+                                  _id: 65abbcfc15e59699acd57b7b,
+                                  userName: user2,
+                                  fullName: test demo2,
+                                  email: user2@gmail.com,
+                                  avatar: https://res.cloudinary.com/dmquxwp9s/image/upload/v1705753679/ps9hlei1eqboveehks4l.jpg,
+                                },
+                              createdAt: 2024-01-20T12:38:44.336Z,
+                              updatedAt: 2024-01-20T12:38:44.336Z,
+                            },
+                            {
+                              _id: 65ae0d5dd0cb62a33ff85fc0,
+                              content: amazing video u2,
+                              owner:
+                                {
+                                  _id: 65abbd1715e59699acd57b7f,
+                                  userName: user3,
+                                  fullName: test demo,
+                                  email: user3@gmail.com,
+                                  avatar: http://res.cloudinary.com/dmquxwp9s/image/upload/v1705821933/p7iunslxb80i58wbbs0d.jpg,
+                                },
+                              createdAt: 2024-01-22T06:38:21.961Z,
+                              updatedAt: 2024-01-22T06:38:21.961Z,
+                            },
+                          ]
+                        owner: 65abbccf15e59699acd57b77
+                        createdAt: "2024-01-21T11:45:54.717Z"
+                        updatedAt: "2024-01-21T11:45:54.717Z"
+                        __v: 0
+
+                    message: >-
+                      Video comments fetched successfully
+                    statusCode: 200
+                    success: true
+
+  /comments/c/{commentId}:
+    patch:
+      tags:
+        - ▶️ youtube
+      summary: update video comment
+      description: >-
+        The API endpoint allows users to update video comment
+      operationId: update video comment
+      parameters:
+        - $ref: "#/components/parameters/commentParam"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                content:
+                  type: string
+                  example: good video
+            example:
+              content: good video
+      responses:
+        "201":
+          description: update video comment
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/commentSchema"
+
+              examples:
+                update video comment:
+                  value:
+                    data:
+                      _id: 65ad03f26fed3160eba0650e,
+                      content: good video this channel
+                      video: 65abbde315e59699acd57b8b
+                      owner: 65abbccf15e59699acd57b77
+                      createdAt: "2024-01-21T11:45:54.717Z"
+                      updatedAt: "2024-01-21T11:45:54.717Z"
+                      __v: 0
+
+                    message: >-
+                      Comment updated to successfully.
+                    statusCode: 200
+                    success: true
+
+    delete:
+      tags:
+        - ▶️ youtube
+      summary: delete video comment
+      description: >-
+        The API endpoint allows users to delete video comment
+      operationId: delete video comment
+      parameters:
+        - $ref: "#/components/parameters/commentParam"
+      responses:
+        "201":
+          description: delete video comment
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/commentSchema"
+
+              examples:
+                delete video comment:
+                  value:
+                    statusCode: 200
+                    message: >-
+                      Comment deleted to successfully.
+                    success: true
+
+  /tweets:
+    post:
+      tags:
+        - ▶️ youtube
+      summary: create tweet
+      description: >-
+        The API endpoint allows users to create tweet
+      operationId: create tweet
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                content:
+                  type: string
+                  example: hey bro
+            example:
+              content: hey bro
+      responses:
+        "201":
+          description: create tweet
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/tweetSchema"
+
+              examples:
+                create tweet:
+                  value:
+                    data:
+                      _id: 65ae3ffb2ee391e7a71c6e2d
+                      content: welcome
+                      owner: 65abbccf15e59699acd57b77
+                      createdAt: "2024-01-22T10:14:19.136Z"
+                      updatedAt: "2024-01-22T10:14:19.136Z"
+                      __v: 0
+
+                    message: >-
+                      Tweet add to successfully.
+                    statusCode: 200
+                    success: true
+  /tweets/user/{userId}:
+    get:
+      tags:
+        - ▶️ youtube
+      summary: get user tweets
+      description: >-
+        The API endpoint allows users get user tweets
+      operationId: get user tweets
+      parameters:
+        - $ref: "#/components/parameters/userParam"
+      responses:
+        "200":
+          description: get user tweets
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/tweetSchema"
+              examples:
+                get tweets:
+                  value:
+                    data:
+                      [
+                        {
+                          _id: 65abbed415e59699acd57ba0,
+                          content: amazing video u2,
+                          owner:
+                                {
+                                  _id: 65abbd1715e59699acd57b7f,
+                                  userName: princess.rutherford,
+                                  avatar: http://res.cloudinary.com/dmquxwp9s/image/upload/v1705821933/p7iunslxb80i58wbbs0d.jpg,
+                                },
+                          createdAt: 2024-01-20T12:38:44.336Z,
+                          updatedAt: 2024-01-20T12:38:44.336Z,
+                        },
+                        {
+                          _id: 65ae0d5dd0cb62a33ff85fc0,
+                          content: amazing content,
+                          owner: 
+                                {
+                                  _id: 665de18015a38347b38155b0,
+                                  userName: princess.rutherford,
+                                  avatar: https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/1142.jpg,
+                                },
+                          createdAt: 2024-01-22T10:23:36.517Z,
+                          updatedAt: 2024-01-22T10:23:36.517Z,
+                        },
+                      ]
+                    message: >-
+                      Tweets fetched successfully.
+                    statusCode: 200
+                    success: true
+
+  /tweets/{tweetId}:
+    patch:
+      tags:
+        - ▶️ youtube
+      summary: update tweet
+      description: >-
+        The API endpoint allows users to update tweet
+      operationId: update tweet
+      parameters:
+        - $ref: "#/components/parameters/tweetParam"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                content:
+                  type: string
+                  example: all fine
+            example:
+              content: all fine
+      responses:
+        "200":
+          description: update tweet
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/tweetSchema"
+
+              examples:
+                update tweet:
+                  value:
+                    data:
+                      _id: 65ad03f26fed3160eba0650e,
+                      content: good bro
+                      owner: 65abbccf15e59699acd57b77
+                      createdAt: "2024-01-21T11:45:54.717Z"
+                      updatedAt: "2024-01-21T11:45:54.717Z"
+                      __v: 0
+
+                    message: >-
+                      Tweet updated successfully.
+                    statusCode: 200
+                    success: true
+
+    delete:
+      tags:
+        - ▶️ youtube
+      summary: delete tweet
+      description: >-
+        The API endpoint allows users to delete tweet
+      operationId: delete tweet
+      parameters:
+        - $ref: "#/components/parameters/tweetParam"
+      responses:
+        "200":
+          description: delete tweet
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/tweetSchema"
+
+              examples:
+                delete tweet:
+                  value:
+                    statusCode: 200
+                    message: >-
+                      Tweet deleted successfully.
+                    success: true
+
+  /likes/toggle/v/{videoId}:
+    post:
+      tags:
+        - ▶️ youtube
+      summary: toggle video like/dislike
+      parameters:
+        - $ref: "#/components/parameters/videoParam"
+      description: >-
+        The API endpoint allows user toggle video like/dislike
+      operationId: toggle video like/dislike
+      responses:
+        "201":
+          description: toggle video like/dislike
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/likeSchema"
+              examples:
+                toggle video like/dislike:
+                  value:
+                    statusCode: 200
+                    data:
+                      isLiked: true
+                    message: >-
+                      Video Liked successfully
+                    success: true
+
+  /likes/toggle/c/{commentId}:
+    post:
+      tags:
+        - ▶️ youtube
+      summary: toggle video like/dislike
+      parameters:
+        - $ref: "#/components/parameters/commentParam"
+      description: >-
+        The API endpoint allows user toggle video comment like/dislike
+      operationId: toggle video comment like/dislike
+      responses:
+        "201":
+          description: toggle video comment like/dislike
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/likeSchema"
+              examples:
+                toggle video comment like/dislike:
+                  value:
+                    statusCode: 200
+                    data:
+                      isLiked: true
+                    message: >-
+                      Comment liked successfully
+                    success: true
+
+  /likes/toggle/t/{tweetId}:
+    post:
+      tags:
+        - ▶️ youtube
+      summary: toggle user tweet like/dislike
+      parameters:
+        - $ref: "#/components/parameters/tweetParam"
+      description: >-
+        The API endpoint allows user toggle tweet like/dislike
+      operationId: toggle user tweet like/dislike
+      responses:
+        "201":
+          description: toggle user tweet like/dislike
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/likeSchema"
+              examples:
+                toggle tweet like/dislike:
+                  value:
+                    statusCode: 200
+                    data:
+                      isLiked: true
+                    message: >-
+                      Tweet liked successfully
+                    success: true
+
+  /likes/videos:
+    get:
+      tags:
+        - ▶️ youtube
+      summary: get user liked all videos
+      description: >-
+        The API endpoint allows users liked videos
+      operationId: fetch user liked all videos
+      responses:
+        '200':
+          description: fetch user liked all videos
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/videoSchema"
+              examples:
+                liked videos:
+                  value:
+                    data:
+                    [
+                      {
+                      likedVideos:
+
+                            [{
+                              _id: 65abbde315e59699acd57b8b,
+                              videoFile:
+                                [
+                                  {
+                                    _id: 65abbde315e59699acd57b8b,
+                                    publicId: g26kngm9d9eelqpd3dpa,
+                                    url: https://via.placeholder.com/200x200.png,
+                                  },
+                                ],
+                              thumbnail:
+                                [
+                                  {
+                                    _id: 65abbde315e59699acd57b8b,
+                                    publicId: g26kngm9d9eelqpd3dpa,
+                                    url: https://via.placeholder.com/200x200.png,
+                                  },
+                                ],
+                              title: chai aur code,
+                              description: pro level node  js nest js backend course,
+                              duration: 16.319979,
+                              views: 0,
+                              isPublished: true,
+                              isForKids: 0,
+                              isRestrict: 0,
+                              owner: { 
+                                        _id: 665de18015a38347b38155b2,
+                                        userName: alek_franecki5,
+                                        email: kenyatta_champlin@hotmail.com,
+                                        avatar: "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/11.jpg"
+                                      },
+                            },
+                            {
+                              _id: 65abbde315e59699acd57b8b,
+                              videoFile:
+                                [
+                                  {
+                                    _id: 65abbde315e59699acd57b8b,
+                                    publicId: g26kngm9d9eelqpd3dpa,
+                                    url: https://via.placeholder.com/200x200.png,
+                                  },
+                                ],
+                              thumbnail:
+                                [
+                                  {
+                                    _id: 65abbde315e59699acd57b8b,
+                                    publicId: g26kngm9d9eelqpd3dpa,
+                                    url: https://via.placeholder.com/200x200.png,
+                                  },
+                                ],
+                              title: chai aur code,
+                              description: pro level node  js nest js backend course,
+                              duration: 16.319979,
+                              views: 0,
+                              isPublished: true,
+                              isForKids: 0,
+                              isRestrict: 0,
+                              owner: { 
+                                        _id: 665de18215a38347b381561e,
+                                        userName: demo kd,
+                                        email: kd@hotmail.com,
+                                        avatar: "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/11.jpg"
+                                      },
+                            }],
+                        }   
+                    ]
+                    message: >-
+                      Channel liked video fetched successfully.
+                    statusCode: 200
+                    success: true
+  /playlist:
+    post:
+      tags:
+        - ▶️ youtube
+      summary: create playlist
+      description: >-
+        The API endpoint allows users to create playlist
+      operationId: create playlist
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: backend with chai aur code
+                description:
+                  type: string
+                  example: Embark on a sonic journey with our curated playlist, blending genres and rhythms to create the perfect soundtrack for any mood. From upbeat anthems to soulful ballads, each track is carefully selected to evoke emotion and elevate your listening experience. Tune in and let the music speak to your soul
+            example:
+              name: backend with chai aur code
+              description: Embark on a sonic journey with our curated playlist, blending genres and rhythms to create the perfect soundtrack for any mood. From upbeat anthems to soulful ballads, each track is carefully selected to evoke emotion and elevate your listening experience. Tune in and let the music speak to your soul.
+      responses:
+        "201":
+          description: create video playlist
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/playlistSchema"
+
+              examples:
+                create playlist:
+                  value:
+                    data:
+                      _id: 65ae61614ee99770656898ed
+                      name: node js with
+                      description: best series
+                      videos: []
+                      owner: "665de18015a38347b38155b0"
+                      createdAt: "2024-01-22T12:36:49.301Z"
+                      updatedAt: "2024-01-22T12:38:43.331Z"
+                      __v: 1
+
+                    message: >-
+                      Playlist created successfully.
+                    statusCode: 200
+                    success: true
+  /playlist/{playlistId}:
+    get:
+      tags:
+        - ▶️ youtube
+      summary: get user videos playlist by id
+      parameters:
+        - $ref: "#/components/parameters/playlistParam"
+      description: >-
+        The API endpoint allows users to get user videos playlist by id
+      operationId: get user videos playlist by id
+      responses:
+        "200":
+          description: get user videos playlist by id
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/playlistSchema"
+              examples:
+                get video playlist:
+                  value:
+                    data:
+                      _id: 65ae61614ee99770656898ed
+                      name: node js with chai-aur-code
+                      description: best videos
+                      videos:
+                        [
+                          "65abade315e59699acd57b8b",
+                          "67absde315e59699acd57b8a",
+                          "62absde315e59699acd57b8d",
+                          "61abfde315e59699acd57b8y",
+                        ]
+                      owner: "65abbd1715e59699acd57b7f"
+                      createdAt: "2024-01-22T12:36:49.301Z"
+                      updatedAt: "2024-01-22T12:38:43.331Z"
+                      __v: 1
+
+                    message: >-
+                      User playlists fetched successfully.
+                    statusCode: 200
+                    success: true
+
+    patch:
+      tags:
+        - ▶️ youtube
+      summary: update playlist
+      description: >-
+        The API endpoint allows users to update playlist
+      operationId: update playlist
+      parameters:
+        - $ref: "#/components/parameters/playlistParam"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: backend with chai aur code
+                description:
+                  type: string
+                  example: Embark on a sonic journey with our curated playlist, blending genres and rhythms to create the perfect soundtrack for any mood. From upbeat anthems to soulful ballads, each track is carefully selected to evoke emotion and elevate your listening experience. Tune in and let the music speak to your soul
+            example:
+              name: backend with chai aur code
+              description: Embark on a sonic journey with our curated playlist, blending genres and rhythms to create the perfect soundtrack for any mood. From upbeat anthems to soulful ballads, each track is carefully selected to evoke emotion and elevate your listening experience. Tune in and let the music speak to your soul.
+      responses:
+        "200":
+          description: update video playlist
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/playlistSchema"
+
+              examples:
+                update playlist:
+                  value:
+                    data:
+                      _id: 65ae61614ee99770656898ed
+                      name: Backend Node js
+                      description: amazing series
+                      videos:
+                        [
+                          "65abade315e59699acd57b8b",
+                          "67absde315e59699acd57b8a"
+                        ]
+                      owner: "65abbd1715e59699acd57b7f"
+                      createdAt: "2024-01-22T12:36:49.301Z"
+                      updatedAt: "2024-01-22T12:38:43.331Z"
+                      __v: 1
+
+                    message: >-
+                      Playlist updated successfully.
+                    statusCode: 200
+                    success: true
+
+    delete:
+      tags:
+        - ▶️ youtube
+      summary: delete playlist
+      description: >-
+        The API endpoint allows users to delete playlist
+      operationId: delete playlist
+      parameters:
+        - $ref: "#/components/parameters/playlistParam"
+      responses:
+        "200":
+          description: delete playlist
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/playlistSchema"
+
+              examples:
+                delete playlist:
+                  value:
+                    statusCode: 200
+                    message: >-
+                      Playlist deleted successfully.
+                    success: true
+
+  /playlist/user/{userId}:
+    get:
+      tags:
+        - ▶️ youtube
+      summary: get videos playlist by user id
+      parameters:
+        - $ref: "#/components/parameters/userParam"
+      description: >-
+        The API endpoint allows users to get videos playlist by user id
+      operationId: get videos playlist by user id
+      responses:
+        "200":
+          description: get videos playlist by user id
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/playlistSchema"
+              examples:
+                get video playlist:
+                  value:
+                    data:
+                      _id: 65ae61614ee99770656898ed
+                      name: node js with chai-aur-code
+                      description: best videos
+                      videos: [
+                                  {
+                                    _id: "665de18215a38347b3815616",
+                                    videoFile: [
+                                      {
+                                        url: "https://res.cloudinary.com/dmquxwp9s/video/upload/v1717463458/lhuq7ekxhjqsgzqbbspd.mp4",
+                                        publicId: "lhuq7ekxhjqsgzqbbspd",
+                                        _id: "665e6a9504fb1ac205fb6a99"
+                                      }
+                                    ],
+                                    thumbnail: [
+                                      {
+                                        url: "https://res.cloudinary.com/dmquxwp9s/image/upload/v1717463662/cpjrqsadiqba0tfoixkc.jpg",
+                                        publicId: "cpjrqsadiqba0tfoixkc",
+                                        _id: "665e6b5ddd836c8dd30143f3"
+                                      }
+                                    ],
+                                    title: "Chirographum solutio thymum cursim terror.",
+                                    description: "Similique vomito crinis videlicet surculus curis ad umbra calculus calamitas. Verto antepono assumenda. Deserunt sophismata depopulo tibi utor tyrannus tollo. Bene appositus desparatus confugo. Curto confero curvo arto videlicet conforto. Officia aspicio aliquid unde itaque excepturi virgo crur. Quibusdam conitor tendo condico comis tego advenio facere. Cura argentum commemoro. Temperantia deleniti tabula damnatio subiungo subiungo viriliter. Deporto trepide cur solio abbas sed minus.",
+                                    duration: "3370.144218",
+                                    views: 8800,
+                                    isPublished: true,
+                                    isForKids: 0,
+                                    isRestrict: 1,
+                                    owner: {
+                                      _id: "665de18015a38347b38155b5",
+                                      userName: "henderson18",
+                                      email: "vilma_franey@gmail.com",
+                                      avatar: "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/675.jpg"
+                                    },
+                                    __v: 0,
+                                     createdAt: "2024-06-03T15:30:10.085Z",
+                                    updatedAt: "2024-06-04T01:21:44.648Z"
+                                  },
+                                  {
+                                    _id: "665de18215a38347b3815619",
+                                    videoFile: [
+                                      {
+                                        url: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4",
+                                        publicId: "bcac8f66-5f96-4dd8-92f1-4d76a6e12f91",
+                                        _id: "665de18215a38347b381561a"
+                                      }
+                                    ],
+                                    thumbnail: [
+                                      {
+                                        url: "https://loremflickr.com/640/480?lock=8228297779445760",
+                                        publicId: "5276c420-2370-46cc-b816-4e3167138b73",
+                                        _id: "665de18215a38347b381561b"
+                                      }
+                                    ],
+                                    title: "Eos tamen ager vesper angulus.",
+                                    description: "Tribuo magni accusator acervus super atavus compono aqua animadverto. Eligendi vorago venio corrigo capillus laboriosam nulla pecto creo asporto. Tollo victoria surculus cui beatus suggero. Coadunatio solio caput voro blandior solutio. Paens velit decerno curis auctus cohaero curtus. Umerus tui adversus. Vel cohors alveus aperiam creptio veritas sint. Succurro vulgaris doloremque corroboro arbor. Stella cubitum angustus. Vulticulus cena voluntarius subseco spiculum convoco concedo volup cetera vesco.",
+                                    duration: "67",
+                                    views: 4491,
+                                    isPublished: true,
+                                    isForKids: 0,
+                                    isRestrict: 1,
+                                    owner: {
+                                      _id: "665de18015a38347b38155c1",
+                                      userName: "barrett_bergstrom94",
+                                      email: "keon_olson88@hotmail.com",
+                                      avatar: "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/1190.jpg"
+                                    },
+                                    __v: 0,
+                                    createdAt: "2024-06-03T15:30:10.086Z",
+                                    updatedAt: "2024-06-03T15:30:10.086Z"
+                                  }]
+                      owner: "65abbd1715e59699acd57b7f"
+                      createdAt: "2024-01-22T12:36:49.301Z"
+                      updatedAt: "2024-01-22T12:38:43.331Z"
+                      __v: 1
+
+                    message: >-
+                      User playlists fetched successfully.
+                    statusCode: 200
+                    success: true
+
+  /playlist/add/{videoId}/{playlistId}:
+    patch:
+      tags:
+        - ▶️ youtube
+      summary: add videos to playlist
+      description: >-
+        The API endpoint allows user add videos to playlist
+      operationId: add videos to playlist
+      parameters:
+        - $ref: "#/components/parameters/videoParam"
+        - $ref: "#/components/parameters/playlistParam"
+      responses:
+        "200":
+          description: add videos to playlist
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/playlistSchema"
+
+              examples:
+                add videos to playlist:
+                  value:
+                    data:
+                      _id: 65ae61614ee99770656898ed
+                      name: node js with
+                      description: best series
+                      videos:
+                        [
+                          "65abade315e59699acd57b8b",
+                          "67absde315e59699acd57b8a",
+                          "62absde315e59699acd57b8d",
+                          "61abfde315e59699acd57b8y",
+                        ]
+                      owner: "65abbd1715e59699acd57b7f"
+                      createdAt: "2024-01-22T12:36:49.301Z"
+                      updatedAt: "2024-01-22T12:38:43.331Z"
+                      __v: 1
+
+                    message: >-
+                      Video added to playlist successfully.
+                    statusCode: 200
+                    success: true
+  /playlist/remove/{videoId}/{playlistId}:
+    patch:
+      tags:
+        - ▶️ youtube
+      summary: remove videos to playlist
+      description: >-
+        The API endpoint allows user remove videos to playlist
+      operationId: remove videos to playlist
+      parameters:
+        - $ref: "#/components/parameters/videoParam"
+        - $ref: "#/components/parameters/playlistParam"
+      responses:
+        "200":
+          description: remove videos to playlist
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/playlistSchema"
+
+              examples:
+                remove videos to playlist:
+                  value:
+                    data:
+                      _id: 65ae61614ee99770656898ed
+                      name: node js with
+                      description: best series
+                      videos:
+                        ["65abade315e59699acd57b8b", "67absde315e59699acd57b8a"]
+                      owner: "65abbd1715e59699acd57b7f"
+                      createdAt: "2024-01-22T12:36:49.301Z"
+                      updatedAt: "2024-01-22T12:38:43.331Z"
+                      __v: 1
+
+                    message: >-
+                      Video remove to playlist successfully.
+                    statusCode: 200
+                    success: true
+
+  /subscriptions/c/{channelId}:
+    get:
+      tags:
+        - ▶️ youtube
+      summary: get user subscribed channels
+      parameters:
+        - $ref: "#/components/parameters/channelParam"
+      description: >-
+        The API endpoint allows users to get  subscribed channels
+      operationId: get user subscribed channels
+      responses:
+        "200":
+          description: get user subscribed channels
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/subscriptionSchema"
+              examples:
+                user subscribed channels:
+                  value:
+                    data: 
+                      {
+                          subscribedChannels: [
+                            {
+                              _id: 65abbcfc15e59699acd57b7b,
+                              avatar: "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/225.jpg",
+                              fullName: "maryann mccullough" 
+
+                          },
+                          {     
+                              _id: 65abbccf15e59699acd57b77,
+                              avatar: "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/11.jpg",
+                              fullName: "kay dibbert"
+                          }
+                        ] 
+                      }    
+                    message: >-
+                      User subscribed channels list fetched successfully.
+                    statusCode: 200
+                    success: true
+
+    post:
+      tags:
+        - ▶️ youtube
+      summary: toggle Subscription on youtube channel
+      parameters:
+        - $ref: "#/components/parameters/channelParam"
+      description: >-
+        The API endpoint allows user toggle Subscription on youtube channel
+      operationId: toggle Subscription on youtube channel
+      responses:
+        "201":
+          description: toggle Subscription on youtube channel
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/subscriptionSchema"
+              examples:
+                toggle Subscription:
+                  value:
+                    statusCode: 200
+                    data: 
+                      Subscribed: true
+                    message: >-
+                      Channel subscribed successfully.
+                    success: true
+
+  /subscriptions/u/{subscriberId}:
+    get:
+      tags:
+        - ▶️ youtube
+      summary: get channel subscribers list
+      parameters:
+        - $ref: "#/components/parameters/subscriberParam"
+      description: >-
+        The API endpoint allows users to get channel subscribers list
+      operationId: get channel subscribers list
+      responses:
+        "200":
+          description: get channel subscribers list
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/subscriptionSchema"
+              examples:
+                channel subscribers list:
+                  value:
+                    data:
+                      { 
+                          _id: 65afdd0a96fa83ebe2b86344,
+                          subscribeUser: [
+                            { 
+                              _id: 65abbd1715e59699acd57b7f,
+                              userName: user3,
+                              email: user3@gmail.com,
+                              avatar: http://res.cloudinary.com/dmquxwp9s/image/upload/v1705821933/p7iunslxb80i58wbbs0d.jpg,
+                              fullName: u3
+                            },
+                            {
+                              _id: 65abbcfc15e59699acd57b7b,
+                              userName: user2,
+                              email: user2@gmail.com,
+                              avatar: http://res.cloudinary.com/dmquxwp9s/image/upload/v1705821933/p7iunslxb80i58wbbs0d.jpg,
+                              fullName: u2
+                          }
+                        ]
+                      }
+                    message: >-
+                      Channel all subscriber list fetched successfully.
+                    statusCode: 200
+                    success: true
+
+  /dashboard/stats:
+    get:
+      tags:
+        - 💻 Dashboard
+      summary: Get Channel Stats Information
+      description: >-
+        The API endpoint allows users to get Channel Stats Information
+      operationId:  Get Channel Stats Information
+      responses:
+        "200":
+          description: Get Channel Stats Information
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/videoSchema"
+              examples:
+                Get Channel Stats Information:
+                  value:
+                    statusCode: 200
+                    data:
+                        totalViews: 0
+                        totalVideos: 2
+                        totalLikes: 2
+                        totalSubscribers: 4
+                    message: "Get the channel stats info fetched successfully"
+                    success: true
+
+  /dashboard/videos:
+    get:
+      tags:
+        - 💻 Dashboard
+      summary: get channel all videos
+      description: >-
+        The API endpoint allows users to retrieve channel all videos
+      operationId: get channel all videos
+      responses:
+        "200":
+          description: get channel all videos
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/videoSchema"
+              examples:
+                get channel all videos:
+                  value:
+                    data:
+                      channelVideos:
+                        [
+                          {
+                            _id: 65abbde315e59699acd57b8b,
+                            videoFile:
+                              [
+                                {
+                                  _id: 65abbde315e59699acd57b8b,
+                                  publicId: g26kngm9d9eelqpd3dpa,
+                                  url: https://via.placeholder.com/200x200.png,
+                                },
+                              ],
+                            thumbnail:
+                              [
+                                {
+                                  _id: 65abbde315e59699acd57b8b,
+                                  publicId: g26kngm9d9eelqpd3dpa,
+                                  url: https://via.placeholder.com/200x200.png,
+                                },
+                              ],
+                            title: chai aur code,
+                            description: pro level node  js nest js backend course,
+                            duration: 16.319979,
+                            views: 0,
+                            isPublished: true,
+                            isForKids: 0,
+                            isRestrict: 0,
+                            likes: 0,
+                            owner: 665de18015a38347b38155b2
+                           
+                          },
+                          {
+                            _id: 65ad03f26fed3160eba0650e,
+                            videoFile:
+                              [
+                                {
+                                  url: "https://res.cloudinary.com/dmquxwp9s/video/upload/v1705837379/jqakgbwht1jvur5lorgv.mp4",
+                                  publicId: "jqakgbwht1jvur5lorgv",
+                                  _id: "65ad03f26fed3160eba0650f",
+                                },
+                              ],
+                            thumbnail:
+                              [
+                                {
+                                  url: "https://res.cloudinary.com/dmquxwp9s/image/upload/v1705837381/oju19npqcsizoxnv1w1k.jpg",
+                                  publicId: "oju19npqcsizoxnv1w1k",
+                                  _id: "65ad03f26fed3160eba06510",
+                                },
+                              ],
+                            title: "react js",
+                            description: "pro level react js",
+                            duration: "16.319979",
+                            views: 0,
+                            isPublished: true,
+                            isForKids: 0,
+                            isRestrict: 0,
+                            likes: 0,
+                            owner: 665de18015a38347b38155b2,
+                            createdAt: "2024-01-21T11:45:54.717Z",
+                            updatedAt: "2024-01-21T11:45:54.717Z",
+                            __v: 0,
+                          },
+                        ]
+                      totalVideos: 2
+                      limit: 10
+                      page: 1
+                      totalPages: 1
+                      serialNumberStartFrom: 1
+                      hasPrevPage: false
+                      hasNextPage: false
+                      prevPage: null
+                      nextPage: null
+
+                    message: >-
+                      Get the channel upload video fetched successfully
+                    statusCode: 200
+                    success: true
+
+  /seed/video:
+
+    post:
+      tags:
+        - 💉 Database Seeding
+      summary: Seed video
+      description: >-
+        This API endpoint is responsible for populating all the essential
+        entities required for an video service in the database.
+
+
+        It provides a convenient way for developers to initialize the video
+        system with dummy or sample data for testing or development purposes.
+      operationId: seedVideo
+      responses:
+        '201':
+          description: Seed video
+          headers:
+            Access-Control-Allow-Credentials:
+              schema:
+                type: string
+                example: 'true'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Content-Length:
+              schema:
+                type: string
+                example: '101'
+            Date:
+              schema:
+                type: string
+                example: Wed, 05 Jul 2023 11:16:41 GMT
+            ETag:
+              schema:
+                type: string
+                example: W/"65-qEAsjELyh5NvPAGTBXNEpqq2STw"
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+            RateLimit-Limit:
+              schema:
+                type: string
+                example: '500'
+            RateLimit-Remaining:
+              schema:
+                type: string
+                example: '497'
+            RateLimit-Reset:
+              schema:
+                type: string
+                example: '192'
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties: {}
+                  message:
+                    type: string
+                    example: Database populated for video successfully
+                  statusCode:
+                    type: number
+                    example: 201
+                  success:
+                    type: boolean
+                    example: true
+              examples:
+                Seed ecommerce:
+                  value:
+                    data: {}
+                    message: Database populated for video successfully
+                    statusCode: 201
+                    success: true     
+  
+  /reset-db:
+    delete:
+      tags:
+        - 🚫 Danger Zone
+      summary: Reset database
+      description: >-
+        ⚠️ DANGER ⚠️
+
+        This API endpoint is a potentially destructive operation designed to
+        allow users to drop or delete an entire database associated with their
+        account or application.
+
+
+        _**It should be used with caution as it permanently deletes all data
+        stored in the specified database.**_
+      operationId: resetDatabase
+      responses:
+        '200':
+          description: Reset database
+          headers:
+            Access-Control-Allow-Credentials:
+              schema:
+                type: string
+                example: 'true'
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Content-Length:
+              schema:
+                type: string
+                example: '87'
+            Date:
+              schema:
+                type: string
+                example: Sun, 18 Jun 2023 08:05:27 GMT
+            ETag:
+              schema:
+                type: string
+                example: W/"57-trugP7n2P8gcoxEgnJVryfOxjwE"
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    nullable: true
+                    example: null
+                  message:
+                    type: string
+                    example: Database dropped successfully
+                  statusCode:
+                    type: number
+                    example: 200
+                  success:
+                    type: boolean
+                    example: true
+              examples:
+                Reset database:
+                  value:
+                    data: null
+                    message: Database dropped successfully
+                    statusCode: 200
+                    success: true                  
+                                                               
+
+components:
+  # Reusable path, query, header and cookie parameters
+  parameters:
+    videoParam:
+      in: path
+      name: videoId
+      required: true
+      schema:
+        type: string
+        example: 65abbde315e59699acd57b8b
+      description: The video ID
+
+    commentParam:
+      in: path
+      name: commentId
+      required: true
+      schema:
+        type: string
+        example: 65abbde315e59699acd57b8b
+      description: The comment ID
+
+    tweetParam:
+      in: path
+      name: tweetId
+      required: true
+      schema:
+        type: string
+        example: 65abbde315e59699acd57b8b
+      description: The tweet ID
+
+    userParam:
+      in: path
+      name: userId
+      required: true
+      schema:
+        type: string
+        example: 65abbde315e59699acd57b8b
+      description: The user ID
+
+    playlistParam:
+      in: path
+      name: playlistId
+      required: true
+      schema:
+        type: string
+        example: 65abbde315e59699acd57b8b
+      description: The playlist ID
+
+    subscriberParam:
+      in: path
+      name: subscriberId
+      required: true
+      schema:
+        type: string
+        example: 65abbde315e59699acd57b8b
+      description: The subscriber ID
+
+    channelParam:
+      in: path
+      name: channelId
+      required: true
+      schema:
+        type: string
+        example: 65abbde315e59699acd57b8b
+      description: The channel ID
+
+  schemas:
+    userSchema:
+      properties:
+        _id:
+          type: string
+          example: 65abbde315e59699acd57b8b
+        userName:
+          type: string
+          example: user1
+        fullName:
+          type: string
+          example: krish roxer  
+        avatar:
+          type: string
+          example: https://res.cloudinary.com/dmquxwp9s/image/upload/v1705753634/l5geqxh8dapombujjzvm.jpg
+        coverImage:
+          type: string
+          example: https://res.cloudinary.com/dmquxwp9s/image/upload/v1705753634/l5geqxh8dapombujjzvm.jpg
+        email:
+          type: string
+          example: user1@gmail.com
+        watchHistory:
+          type: array
+          example: ""
+        password:
+          type: string
+          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+        refreshToken:
+          type: string
+          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWFiYmNjZjE1ZTU5Njk5YWNkNTdiNzciLCJpYXQiOjE3MDYwMjYwMTYsImV4cCI6MTcwNjg5MDAxNn0.1pBczg-VVg8SiAK_pyiHjyLK6aEe8t7Bz_cNXKF1JUM      
+        createdAt:
+          type: string
+          example: "2024-01-22T06:38:21.961Z"
+        updatedAt:
+          type: string
+          example: "2024-01-22T06:38:21.961Z"
+    videoSchema:
+      properties:
+        _id:
+          type: string
+          example: 65abbde315e59699acd57b8b
+        videoFile:
+          type: array
+          videos:
+            type: object
+            properties:
+              _id:
+                type: string
+                example: 65abbde315e59699acd57b8b
+              publicId:
+                type: string
+                example: g26kngm9d9eelqpd3dpa
+              url:
+                type: string
+                example: https://via.placeholder.com/200x200.png
+        thumbnail:
+          type: array
+          videos:
+            type: object
+            properties:
+            _id:
+              type: string
+              example: 65abbde315e59699acd57b8b
+            publicId:
+              type: string
+              example: g26kngm9d9eelqpd3dpa
+            url:
+              type: string
+              example: https://via.placeholder.com/200x200.png
+        title:
+          type: string
+          example: chai aur code
+        description:
+          type: string
+          example: pro level node  js nest js backend course
+        duration:
+          type: string
+          example: 16.319979
+        views:
+          type: number
+          example: 0
+        isPublished:
+          type: boolean
+          example: true
+        owner:
+          type: string
+          example: 649e795264e7dba29b726936
+    commentSchema:
+      properties:
+        _id:
+          type: string
+          example: 65abbde315e59699acd57b8b
+        content:
+          type: string
+          example: chai aur code
+        video:
+          type: string
+          example: 65abbde315e59699acd57b8b
+        owner:
+          type: string
+          example: 649e795264e7dba29b726936
+        createdAt:
+          type: string
+          example: "2024-01-22T06:38:21.961Z"
+        updatedAt:
+          type: string
+          example: "2024-01-22T06:38:21.961Z"
+    tweetSchema:
+      properties:
+        _id:
+          type: string
+          example: 65ae3ffb2ee391e7a71c6e2d
+        content:
+          type: string
+          example: welcome
+        owner:
+          type: string
+          example: 65abbd1715e59699acd57b7f
+        createdAt:
+          type: string
+          example: "2024-01-22T06:38:21.961Z"
+        updatedAt:
+          type: string
+          example: "2024-01-22T06:38:21.961Z"
+    likeSchema:
+      properties:
+        _id:
+          type: string
+          example: 65ae3ffb2ee391e7a71c6e2d
+        comment:
+          type: string
+          example: 65abbd1715e59699acd57b7b
+        video:
+          type: string
+          example: 65abbd1715e59699acd57b7c
+        likedBy:
+          type: string
+          example: 65abbd1715e59699acd57b7w
+        tweet:
+          type: string
+          example: 65abbd1715e59699acd57b70
+        createdAt:
+          type: string
+          example: "2024-01-22T06:38:21.961Z"
+        updatedAt:
+          type: string
+          example: "2024-01-22T06:38:21.961Z"
+    playlistSchema:
+      properties:
+        _id:
+          type: string
+          example: 65abbde315e59699acd57b8b
+        name:
+          type: string
+          example: backend node js
+        description:
+          type: string
+          example: good
+        videos:
+          type: string
+          example: 65abbde315e59699acd57b8b
+        owner:
+          type: string
+          example: 649e795264e7dba29b726936
+        createdAt:
+          type: string
+          example: "2024-01-22T06:38:21.961Z"
+        updatedAt:
+          type: string
+          example: "2024-01-22T06:38:21.961Z"
+    subscriptionSchema:
+      properties:
+        _id:
+          type: string
+          example: 65abbde315e59699acd57b8b
+        subscriber:
+          type: string
+          example: 65abbde315e59699acd57b8b
+        channel:
+          type: string
+          example: 65abbde315e59699acd57b8b
+        createdAt:
+          type: string
+          example: "2024-01-22T06:38:21.961Z"
+        updatedAt:
+          type: string
+          example: "2024-01-22T06:38:21.961Z"
+
+tags:
+  - name: 🔐 Authentication
+    description: >-
+      This section encompasses all the APIs related to user authentication.
+
+  - name: ▶️ youtube
+    description: >-
+      This folder contains requests that are used for the youtube clone
+
+  - name: 💻 Dashboard
+    description: >-
+      This folder contains requests that are used for the dashboard
+
+  - name: 💉 Database Seeding
+    description: >-
+      This folder contains requests that are used for seeding or populating the
+      database with initial data.  
+  - name: 🚫 Danger Zone
+    description: '**WARNING: Sensitive Operations ⚠️**'    
