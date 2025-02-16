@@ -93,8 +93,4 @@ npm install
 npm run start
 ```
 
-Note: Once the application is deployed, please wait for 3-5 minutes for the swagger docs to be available.
-
-# 📜 Swagger Docs
-
-[Swagger Docs](https://api.freeapi.app): https://api.freeapi.app
+Live app : https://mytube.magicmediaai.com/
